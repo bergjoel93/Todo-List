@@ -4,15 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <div class="container">
-        <img id="laughImg">
-        <h3>Don't Laugh Challenge'</h3>
-        <div id="joke" class="joke"></div>
-        <button id="jokeBtn" class="btn">Get Another Joke</button>
-        
+    <div class="sidebar">
+        <div class="name">
+            <div class="name-icon"></div>
+            <div class="name-name">Joel</div>
+            <div class="name-notification-icon"><span class="material-symbols-outlined">
+                notifications
+                </span></div>
+        </div>
+        <nav>
+            
+            <h3>My Tasks</h3>
+            <div class="nav-line"></div>
+            <button class="add-task">
+                <span class="material-symbols-outlined">
+                    add_circle
+                    </span>
+                    Add Task
+            </button>
+            <button class="today-btn active">Today</button>
+            <button class="upcoming-btn">Upcoming</button>
+
+
+            <h3>My Projects</h3>
+            <div class="nav-line"></div>
+
+            <button class="add-project">
+                <span class="material-symbols-outlined">
+                    add_circle
+                    </span>
+                Add Project
+            </button>
+
+            <button class="project1">Project #1</button>
+            
+        </nav>
     </div>
+
+    <main id="main-content">
+        
+        <!-- Today's tasks are injected here -->
+        
+        <!-- <div class="tasks-today">
+            <h1>Today</h1>
+            <div class="task">
+                <div class="main-line"></div>
+                <div class="task-1">
+                    <input type="checkbox" class="completed" id="completed">
+                    <label for="completed">Water Plants</label>
+                </div>
+                <div class="task-2">Here's a description of the task. You must water the plants daily. Use the watering can in the closet. Use distilled water for the prayer plant.</div>
+            </div>
+            <div class="date"><span class="material-symbols-outlined">
+                calendar_month
+                </span>March 16th</div>
+            <div class="main-line"></div>
+        </div> -->
+
+    </main>
     
 </body>
 </html>
