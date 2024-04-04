@@ -3,8 +3,8 @@ import { formatDueDate } from './dateUtils.js';
 function renderToday(taskArr) {
     const tasks = document.createElement('div');
     tasks.setAttribute('id','tasks');
-    console.log(taskArr.length);
-    console.log(taskArr);
+    // console.log(taskArr.length);
+    // console.log(taskArr);
     for(let i = 0; i < taskArr.length; i++){
         const task = taskArr[i];
         const title = taskArr[i].title;
@@ -27,7 +27,7 @@ function renderToday(taskArr) {
             </span>${dueDate}</div>
             <div class="main-line"></div>
         `;
-        console.log(taskElement);
+        // console.log(taskElement);
         tasks.appendChild(taskElement); 
     };
 
