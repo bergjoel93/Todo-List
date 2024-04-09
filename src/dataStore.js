@@ -1,3 +1,4 @@
+// NOT IN USE
 const dataStore = (() => {
     // Check if tasks exist in localStorage and parse them
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -13,11 +14,7 @@ const dataStore = (() => {
         addTask(task) {
             // Check if the task already exists in the data store
         const existingTask = tasks.find(existingTask => 
-        existingTask.title === task.title &&
-        existingTask.description === task.description &&
-        existingTask.dueDate === task.dueDate &&
-        existingTask.priority === task.priority &&
-        existingTask.complete === task.complete
+        existingTask.title === task.title
         );
 
         // If the task doesn't already exist, add it to the data store

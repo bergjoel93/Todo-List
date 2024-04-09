@@ -1,64 +1,77 @@
+import taskList from "./taskList";
+import Task from "./task";
+const body = document.querySelector('body');
 function renderAddTask() {
     // Create a dialog element
-    const addTaskDialog = document.createElement('dialog');
+    const overlay = document.createElement('div'); //semi-transparent overlay over top of window. 
+    overlay.classList.add('overlay');
 
     // Set the HTML content for the dialog box
-    addTaskDialog.innerHTML = `
+    overlay.innerHTML = `
         <div class="dialog-container">
             <form id="newTaskForm">
                 <h2>Add New Task</h2>
                 <input type="text" name="title" id="title" placeholder="Title" required maxlength="20">
                 <input type="text" name="description" id="description" placeholder="Description..." required maxlength="100">
                 <input type="datetime-local" id="dueDate" required>
+                <div class="priority-container">
                 <label for="priority">Priority Level</label>
                 <select id="priority" required>
                     <option value="Low">Low</option>
                     <option value="Regular">Regular</option>
                     <option value="High">High</option>
                 </select>
-                <label for="complete">Complete?</label>
-                <input type="checkbox" id="complete" name="complete">
-                <input type="submit" name="submit" value="Add Task">
+                </div>
+                <input type="submit" id="submit" name="submit" value="Add Task" style="cursor: pointer;">
                 <button type="button" id="cancel">Cancel</button>
             </form>
         </div>
     `;
 
     // Append the dialog to the document body
-    document.body.appendChild(addTaskDialog);
+    openOverlay();
 
     // Get reference to the form
-    const newTaskForm = addTaskDialog.querySelector('#newTaskForm');
+    newTaskForm();
 
-    // Add event listener for form submission
-    newTaskForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission behavior
+    function newTaskForm() {
 
-        // Get form input values
-        const title = newTaskForm.elements.title.value;
-        const description = newTaskForm.elements.description.value;
-        const dueDate = newTaskForm.elements.dueDate.value;
-        const priority = newTaskForm.elements.priority.value;
-        const complete = newTaskForm.elements.complete.checked;
+        const submitBtn = document.querySelector('#submit');
+        const cancelButton = document.querySelector('#cancel');
+        // Add event listener for form submission
+        submitBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            // Get form input values
+            const title = document.querySelector("#title").value;
+            const description = document.querySelector("#description").value;
+            const dueDate = document.querySelector("#dueDate").value;
+            const priority = document.querySelector("#priority").value;
 
-        // Create a new task object with the form input values
-        const newTask = new Task(title, description, dueDate, priority, complete);
+            // Create a new task object with the form input values
+            const newTask = new Task(title, description, dueDate, priority, false);
+            // add task to task list
+            console.log(newTask);
+            taskList.addTask(newTask);
+            console.log("added new task.");
 
-        // Add logic to add the new task to localStorage or wherever needed
-        // For example, you can call a function from another module to handle task addition
-
-        // Close the dialog box
-        addTaskDialog.close();
-    });
-
-    // Add event listener for cancel button to close the dialog box
-    const cancelButton = addTaskDialog.querySelector('#cancel');
+            // Add logic to add the new task to localStorage or wherever needed
+            // For example, you can call a function from another module to handle task addition
+            // Close the dialog box
+            closeOverlay();
+        });
+         // Add event listener for cancel button to close the dialog box
     cancelButton.addEventListener('click', function() {
-        addTaskDialog.close();
+        closeOverlay();
     });
+    }
 
-    // Show the dialog box
-    addTaskDialog.showModal();
+    function openOverlay() {
+        body.appendChild(overlay);
+    }
+    function closeOverlay() {
+        body.removeChild(overlay);
+    }
 }
+
 
 export default renderAddTask;

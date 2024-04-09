@@ -1,10 +1,11 @@
 // Import necessary modules
 import renderToday from './renderToday.js';
-import dataStore from './dataStore.js';
-import renderAddTask from './renderAddTask.js';
 
-const tasks = dataStore.getAllTasks();
-console.log(tasks); // Log the tasks retrieved from localStorage
+import renderAddTask from './renderAddTask.js';
+import renderAllTasks from './renderAllTasks.js';
+/**
+ * Purpose of this module: To setup Nav event handlers and to handle logic of what happens when you click a particular button in the nav sidebar. 
+ */
 
 function setupNavEventListeners() {
     // Get all buttons in nav
@@ -22,38 +23,49 @@ function setupNavEventListeners() {
     });
 }
 
+function removeActive(){
+    let activeClasses = document.querySelectorAll('.active');
+    activeClasses.forEach(deactive => {
+        deactive.classList.remove('active');
+    })
+}
+
 // Function to handle navigation actions
 function handleNavigation(navItem) {
-    // Clear the main content
-    clearMainContent();
 
     // Determine which navigation item was clicked
     switch (navItem) {
         case 'todayBtn':
-            renderTodayContent();
+            renderToday();
+            removeActive();
+            document.querySelector(".todayBtn").classList.add("active");
             break;
         // Add more cases for other navigation items as needed
         case 'addTaskBtn':
             renderAddTask();
             break;
+        case 'allTasksBtn':
+            renderAllTasks();
+            removeActive();
+            document.querySelector(".allTasksBtn").classList.add("active");
+            break;
         default:
-            // Handle default case or unsupported navigation item
             break;
     }
 }
 
 // Function to clear the main content
-function clearMainContent() {
-    const mainContent = document.querySelector('main');
-    mainContent.innerHTML = ''; // Clear the content
-}
+// function clearMainContent() {
+//     const mainContent = document.querySelector('main');
+//     mainContent.innerHTML = ''; // Clear the content
+// }
 
-// Function to render "Today" content
-function renderTodayContent() {
-    const mainContent = document.querySelector('main');
-    const todayContent = renderToday(tasks); // Assuming renderToday returns the content
-    mainContent.appendChild(todayContent);
-}
+// // Function to render "Today" content
+// function renderTodayContent() {
+//     const mainContent = document.querySelector('main');
+//     const todayContent = renderToday(tasks); // Assuming renderToday returns the content
+//     mainContent.appendChild(todayContent);
+// }
 
 // Export the functions
 export { handleNavigation, setupNavEventListeners };

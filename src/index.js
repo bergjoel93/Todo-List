@@ -2,26 +2,26 @@
 import './styles/style.css'
 //import laughing from './assets/laughing.svg'
 import Task from './task.js';
-import TaskList from './taskList.js';
+import taskList from './taskList.js';
 import renderToday from './renderToday.js';
 import { setupNavEventListeners } from './navigation.js';
-import dataStore from './dataStore.js'; // Import dataStore module
+import renderAllTasks from './renderAllTasks.js';
+
 //Nav listeners
 setupNavEventListeners();
 
-// Create an instance of TaskList
-const taskList = new TaskList();
+// // Create an instance of TaskList
+// const taskList = new TaskList();
 
 // Create test tasks
 const testTask1 = new Task("Water Plants", "Here's a description of the task. You must water the plants daily. Use the watering can in the closet. Use distilled water for the prayer plant.", '2024-04-04T08:00', 'HIGH', false);
 const testTask2 = new Task("Make Bed", "You must make your bed every morning",'2024-04-04T08:00','REGULAR', false);
 
 // Add test tasks to the dataStore
-dataStore.addTask(testTask1);
-dataStore.addTask(testTask2);
+taskList.addTask(testTask1);
+taskList.addTask(testTask2);
 
-// Log the tasks stored in localStorage
-console.log(dataStore.getAllTasks());
+renderAllTasks();
 
 /////////////////////////// Testing Elements Created ////////
 // const taskList  = new TaskList(); // create an instance of TaskList
