@@ -1,8 +1,7 @@
-// Import necessary modules
-import renderToday from './renderToday.js';
-
-import renderAddTask from './renderAddTask.js';
-import renderAllTasks from './renderAllTasks.js';
+import { openOverlay } from './UI/renderOverlay.js';
+import renderTasks from './UI/renderTasks.js';
+//import renderToday from './renderToday.js';
+//import renderAllTasks from './renderAllTasks.js';
 /**
  * Purpose of this module: To setup Nav event handlers and to handle logic of what happens when you click a particular button in the nav sidebar. 
  */
@@ -32,20 +31,19 @@ function removeActive(){
 
 // Function to handle navigation actions
 function handleNavigation(navItem) {
-
     // Determine which navigation item was clicked
     switch (navItem) {
         case 'todayBtn':
-            renderToday();
+            renderTasks('today');
             removeActive();
             document.querySelector(".todayBtn").classList.add("active");
             break;
         // Add more cases for other navigation items as needed
         case 'addTaskBtn':
-            renderAddTask();
+            openOverlay();
             break;
         case 'allTasksBtn':
-            renderAllTasks();
+            renderTasks();
             removeActive();
             document.querySelector(".allTasksBtn").classList.add("active");
             break;
@@ -54,18 +52,4 @@ function handleNavigation(navItem) {
     }
 }
 
-// Function to clear the main content
-// function clearMainContent() {
-//     const mainContent = document.querySelector('main');
-//     mainContent.innerHTML = ''; // Clear the content
-// }
-
-// // Function to render "Today" content
-// function renderTodayContent() {
-//     const mainContent = document.querySelector('main');
-//     const todayContent = renderToday(tasks); // Assuming renderToday returns the content
-//     mainContent.appendChild(todayContent);
-// }
-
-// Export the functions
-export { handleNavigation, setupNavEventListeners };
+export { setupNavEventListeners };

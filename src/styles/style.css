@@ -5,6 +5,10 @@
     --addButtonText: #a81f00;
     --highlightColor: #ffedd5;
     --profileImg: '../assets/user6.png';
+    --highPriority: #fca5a5;
+    --regularPriority: #bbf7d0;
+    --lowPriority: #93c5fd;
+    --lightTextColor: #6b7280;
 }
 * {
     font-family: "Reddit Mono", monospace;
@@ -106,6 +110,7 @@ nav .active {
 main{
     margin: 1rem;
     background-color: #fff;
+    width: 100%;
 }
 
 .main-line {
@@ -116,24 +121,65 @@ main{
     margin-bottom: 12px;
 }
 
-.tasks-today {
-    margin-top: 16px;
-    margin-bottom: 16px;
+/* Individual Task Styling  */
+
+.task {
+    width: 100%;
+    display: grid;
+    grid-template-columns:4fr 1fr ;
 }
+
+.task .title-box {
+    padding: 6px;
+}
+
+span.priority {
+    font-size: 11px;
+    background-color: var(--highPriority);
+    padding: 6px;
+    border-radius: 8px;
+}
+span.High {
+    background-color: var(--highPriority); 
+}
+span.Regular {
+    background-color: var(--regularPriority);
+}
+span.Low {
+    background-color: var(--lowPriority);
+}
+
+.task .description-box {
+    padding-left: 30px;
+    font-size: .9rem;
+    color: var(--lightTextColor);
+}
+
+.edit-pane {
+    display: flex;
+    flex-direction: column;
+}
+.edit-pane button {
+    cursor: pointer;
+    background-color: transparent;
+    border-style: none;
+    color: var(--lightTextColor);
+}
+.edit-pane button:hover {
+    color: var(--addButtonText);
+}
+
 .date {
     color: #dc4c3e;
     display: flex;
     justify-content: start;
     align-items: center;
 }
-.task-1 input, .task-1 label {
+
+.task-pane .title-box label {
     font-size: 1.2rem;
 }
 
-.task-1 input {
-    width: 20px;
-    height: 20px;
-}
 /* Dialog container Stuff */
 .overlay {
     position: fixed;
@@ -147,7 +193,7 @@ main{
     align-items: center;
   }
 
-.dialog-container {
+.task-form-container {
     background-color: var(--sidebarColorLight);
     display: flex;
     width: 60%;
@@ -155,13 +201,13 @@ main{
     border-radius: 12px;
     justify-content: center;
 }
-.dialog-container form{
+.task-form-container form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     
 }
-.dialog-container form input, .dialog-container form button {
+.task-form-container form input, .task-form-container form button {
 margin: 8px;
 padding: 6px;
 }
