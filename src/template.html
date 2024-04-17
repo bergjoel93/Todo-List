@@ -39,38 +39,31 @@
                 Add Project
             </button>
 
-            <button class="project1">Project #1</button>
+            <div class="nav-project-container" style="max-height: 200px; overflow-y: auto;">
+
+                <!-- New buttons with project titles added here -->
+            </div>
             
         </nav>
     </div>
 
     <main id="main-content">
         <!-- Main Content injected here -->
+        <div class="project-container">
 
-        
-        <!-- <div class="main-line"></div>
-        <div class="task">
-            <div class="task-pane">
-                <div class="title-box">
-                    <input type="checkbox" class="completed" id="0" >
-                    <label for="0">Water the Plants <span class="priority HIGH">HIGH</span></label>
-                </div>
-                <div class="description-box">Water those plants.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups. </div>
-                <div class="date"><span class="material-symbols-outlined">
-                calendar_month
-                </span>April 15th 2024</div>
+            <div class="project-info-container">
+                <input type="text" id="projectTitle" placeholder="New Project">
+                <textarea name="projectDescription" id="projectDescription" cols="30" rows="3" placeholder="Description..." ></textarea> 
             </div>
-            <div class="edit-pane">
-                <button class="edit"><span class="material-symbols-outlined">
-                    edit_note
-                    </span></button>
-                <button class="edit"><span class="material-symbols-outlined">
-                    delete
-                    </span></button>
+            <div class="project-task-list">
+                <h2>Tasks</h2>
+                <div class="main-line"></div>
+                <button class="add-project-task"> <span>+</span>Add Task</button>
             </div>
-            
         </div>
-        <div class="main-line"></div> -->
+        
+        
+        
     </main>
     
 </body>

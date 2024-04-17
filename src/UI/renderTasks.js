@@ -8,10 +8,12 @@ import { taskHandlers } from "../handlers/handleTask";
 function renderTasks(filter = 'all') {
     const today = new Date();
     today.setHours(0, 0, 0, 0);  // Normalize today's date to start at midnight makes it easier to compare later. 
-
+    taskManager.sortTasksByDate();
     const allTasks = taskManager.getTasks(); // Retrieve all tasks
 
     const main = document.querySelector('main'); // Main section for incomplete tasks
+    const tasksContainer = document.createElement('div'); // Create a container that contains all the tasks. 
+    tasksContainer.classList.add('tasks-container'); // class name is important bc it's used in Projects. 
     const tasks = document.createElement('div');
     tasks.classList.add('tasks')
     const completedTasks = document.createElement('div');
@@ -44,26 +46,31 @@ function renderTasks(filter = 'all') {
     `;
     if(tasks.innerHTML !== ''){
         if(filter === 'today'){
-            main.innerHTML=`
+            tasksContainer.innerHTML=`
             <h1>Today</h1>
             <div class="main-line"></div>`;
         }
         else{
-            main.innerHTML=`
+            tasksContainer.innerHTML=`
             <h1>All Tasks</h1>
             <div class="main-line"></div>`;
         }
         
-        main.appendChild(tasks);
+        tasksContainer.appendChild(tasks);
         if(completedTasks.innerHTML !==''){
-            main.appendChild(completedSection);
-            main.appendChild(completedTasks);
+            tasksContainer.appendChild(completedSection);
+            tasksContainer.appendChild(completedTasks);
+            main.appendChild(tasksContainer);
         }
         
     }
     else{
         main.innerHTML = `
-        <h1>There are currently no tasks. :)</h1>
+        <div class = "no-tasks">
+            <h1>There are currently no tasks.<span class="material-symbols-outlined" style="font-size:2rem;">
+            sentiment_very_satisfied
+            </span></h1>
+        </div>
         `;
     }
 

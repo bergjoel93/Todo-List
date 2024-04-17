@@ -1,5 +1,7 @@
 import { openOverlay } from './UI/renderOverlay.js';
 import renderTasks from './UI/renderTasks.js';
+import addProject from './project/addProject.js';
+
 //import renderToday from './renderToday.js';
 //import renderAllTasks from './renderAllTasks.js';
 /**
@@ -36,7 +38,7 @@ function handleNavigation(navItem) {
         case 'todayBtn':
             renderTasks('today');
             removeActive();
-            document.querySelector(".todayBtn").classList.add("active");
+            addActive(".todayBtn");
             break;
         // Add more cases for other navigation items as needed
         case 'addTaskBtn':
@@ -45,11 +47,24 @@ function handleNavigation(navItem) {
         case 'allTasksBtn':
             renderTasks();
             removeActive();
-            document.querySelector(".allTasksBtn").classList.add("active");
+            addActive(".todayBtn");
+            break;
+        case 'addProjectBtn':
+            console.log("add project button clicked.");
+            removeActive();
+            addActive(".addProjectBtn");
+            addProject();
+            
             break;
         default:
             break;
     }
 }
 
-export { setupNavEventListeners };
+function addActive(className) {
+        document.querySelector(className).classList.add("active");
+}
+
+export { setupNavEventListeners, removeActive, addActive };
+    
+

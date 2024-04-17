@@ -4,21 +4,6 @@ import Task from "./task";
  * This class provides methods to add, delete, edit, and retrieve tasks,
  * leveraging the local storage for persistence across sessions.
  *
- * Usage:
- *  const taskManager = new TaskManager();
- *  taskManager.addTask(new Task('Task Title', 'Task Description', '2023-12-31', 'High', false));
- *  const tasks = taskManager.getTasks();
- *
- * Properties:
- *  - tasks (Array): An array of Task objects.
- *
- * Methods:
- *  - addTask(task): Adds a new Task to the collection and updates local storage.
- *  - deleteTask(taskIndex): Removes a Task from the collection by its index and updates local storage.
- *  - editTask(taskIndex, updatedDetails): Updates the properties of a Task at the specified index.
- *  - getTasks(filter): Retrieves tasks, optionally filtered by completion status or other criteria.
- *  - saveTasks(): Serializes and saves the tasks array to local storage.
- *  - loadTasks(): Loads and deserializes the tasks array from local storage, ensuring Task integrity.
  */
 
 class TaskManager {
@@ -35,16 +20,16 @@ class TaskManager {
    getTasks() {
        return this.tasks;
    }
-/**
- * Retrieves a task by its unique ID.
- * 
- * @param {number} taskId - The unique identifier of the task to retrieve.
- * @returns {Task|null} The task with the specified ID, or null if no such task exists.
- */
-getTaskById(taskId) {
-    const task = this.tasks.find(task => task.id === taskId);
-    return task || null;  // Return the task if found, otherwise return null
-}
+    /**
+     * Retrieves a task by its unique ID.
+     * 
+     * @param {number} taskId - The unique identifier of the task to retrieve.
+     * @returns {Task|null} The task with the specified ID, or null if no such task exists.
+     */
+    getTaskById(taskId) {
+        const task = this.tasks.find(task => task.id === taskId);
+        return task || null;  // Return the task if found, otherwise return null
+    }
     /**
      * Initializes the 'nextId' property by finding the highest task ID currently in the tasks array and setting nextId to one more than the highest ID. 
      */
@@ -117,6 +102,20 @@ getTaskById(taskId) {
     saveTasks() {
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
+
+    /**
+     * Sorts tasks by due date in ascending order.
+     */
+    sortTasksByDate() {
+        this.tasks.sort((a, b) => {
+            const dateA = new Date(a.dueDate);
+            const dateB = new Date(b.dueDate);
+            return dateA - dateB;
+        });
+    // // Optionally, you might want to save the sorted tasks if needed
+    // this.saveTasks();
+    }
+
    
 }
 
