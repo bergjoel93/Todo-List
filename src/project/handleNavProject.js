@@ -12,10 +12,8 @@ function handleNavProject() {
         projectButton.addEventListener('click', () => {
             //Extract button class
             const projectButtonClass = "."+projectButton.classList[0];
-            console.log('project class: '+projectButtonClass);
             //extract ID
             const projectId = Number(projectButton.getAttribute('data-id'));
-            console.log('Project Id clicked: '+projectId);
             // get project from id. 
             const project = projectManager.getProjectById(projectId);
             //render project page

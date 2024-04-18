@@ -108,6 +108,49 @@ class ProjectManager {
         }
         return [];
     }
+    /**
+     * Updates the project title. 
+     * @param {*} projectId 
+     * @param {*} newTitle 
+     */
+    updateProjectTitle(projectId, newTitle) {
+        const project = this.projects.find(project => project.id === projectId);
+        if (project) {
+            project.title = newTitle;
+            this.saveProjects();
+        } else {
+            console.error('Project not found with ID:', projectId);
+        }
+    }
+    /**
+     * Updates the project description. 
+     * @param {*} projectId 
+     * @param {*} newDescription 
+     */
+    updateProjectDescription(projectId, newDescription) {
+        const project = this.projects.find(project => project.id === projectId);
+        if (project) {
+            project.description = newDescription;
+            this.saveProjects();
+        } else {
+            console.error('Project not found with ID:', projectId);
+        }
+    } 
+    
+    /**
+     * Add's new task to the project. 
+     * @param {*} projectId 
+     * @param {*} task 
+     */
+    addTaskToProject(projectId, task) {
+        const project = this.projects.find(p => p.id === projectId);
+        if (project) {
+            project.tasks.push(task);  // Add the new task to the project's task array
+            this.saveProjects();  // Save the updated projects array
+        } else {
+            console.error("Project not found with ID:", projectId);
+        }
+    }
 
 }
 

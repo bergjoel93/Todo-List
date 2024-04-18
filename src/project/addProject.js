@@ -20,18 +20,14 @@ function addProject() {
     // extract recently made blank project from data storage
     const projects = projectManager.getProjects();
     const recentlyAddedProject = projects[projects.length - 1];
-    console.log(recentlyAddedProject);
+    
 
     // fill main content with blank project. 
     renderProjectPage(recentlyAddedProject);
 
      // add project name to nav bar. Will need a way to refresh the nav bar.
      renderNavProjects();
-
-     // reset nav project handlers
-     handleNavProject();
      
-
 }
 
 export default addProject;

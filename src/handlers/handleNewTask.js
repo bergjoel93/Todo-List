@@ -6,7 +6,7 @@ import Task from "../task";
  * Responsibile for handling user input from new task form. 
  */
 
-function handleNewTaskUserInput(task = null) {
+function handleNewTask(task = null, project = null) {
     const form = document.querySelector('#newTaskForm');
     const submitButton = form.querySelector('#submit');
 
@@ -19,6 +19,9 @@ function handleNewTaskUserInput(task = null) {
         const dueDate = form.querySelector('#dueDate').value;
         const priority = form.querySelector('#priority').value;
 
+        if(project == null){ // if there is no project associated with the task. 
+
+        }
         if (task) {
             // Update existing task
             taskManager.editTask(task.id, { title, description, dueDate, priority, complete: task.complete });
@@ -41,4 +44,4 @@ function handleNewTaskUserInput(task = null) {
 }
 
 
-export default handleNewTaskUserInput;
+export default handleNewTask;

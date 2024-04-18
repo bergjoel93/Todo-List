@@ -50,7 +50,7 @@ function handleNavigation(navItem) {
             addActive(".todayBtn");
             break;
         case 'addProjectBtn':
-            console.log("add project button clicked.");
+            
             removeActive();
             addActive(".addProjectBtn");
             addProject();

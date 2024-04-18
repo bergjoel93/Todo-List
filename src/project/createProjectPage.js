@@ -9,7 +9,7 @@ function createProjectPage(project = null) {
     projectForm.innerHTML = `
         <div class="project-info-container">
                 <input type="text" id="projectTitle" value="${project.title}">
-                <textarea name="projectDescription" id="projectDescription" cols="30" rows="3" placeholder="Description..." value="${project.description}"></textarea> 
+                <textarea name="projectDescription" id="projectDescription" cols="30" rows="3" placeholder="Description...">${project.description}</textarea> 
             </div>
             <div class="project-task-list">
                 <h2>Tasks</h2>

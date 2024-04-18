@@ -1,4 +1,5 @@
 import { projectManager } from "../app";
+import handleNavProject from "./handleNavProject";
 
 /**
  * Responsible for rendering the names of the projects under the Add Project Button
@@ -6,6 +7,8 @@ import { projectManager } from "../app";
 
 function renderNavProjects() {
     const projectContainer = document.querySelector('.nav-project-container');
+
+    projectContainer.innerHTML ='';
 
     const projects = projectManager.getProjects();
     
@@ -19,6 +22,9 @@ function renderNavProjects() {
         titleButton.classList.add(`project-${project.id}`)
         projectContainer.appendChild(titleButton);
     });
+
+    // setup event handlers in nav bar
+    handleNavProject();
 
 }
 
