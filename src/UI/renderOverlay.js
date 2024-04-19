@@ -14,13 +14,7 @@ function openOverlay(task = null, project = null) {
     overlay.appendChild(taskForm); // append newly created form. 
     body.appendChild(overlay);
     
-    if(project == null){ // if no project associated with task then it's just a tas. 
-        handleNewTask(task);
-    }
-    else {
-        
-    }
-    
+    handleNewTask(task, project);
 }
 
 function closeOverlay() {

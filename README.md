@@ -1,5 +1,7 @@
 # Todo List
 
+Use chatgpt to help update the task id when it's pushed to projectManager. '
+
 Frontend environment for building JavaScript applications. 
 What's left to do: 
 

@@ -5,7 +5,7 @@ import { openOverlay } from "../UI/renderOverlay";
  * Responsible for handling the UI for an individual task that includes the checkbox to mark complete, the edit and delete button. This method is called within renderTasks. 
  */
 let currentFilter = 'all'
-function taskHandlers(filter) {
+function taskHandlers(filter, project = null) {
     currentFilter = filter;
     document.querySelectorAll('.completed').forEach(checkbox => {
         checkbox.removeEventListener('change', handleComplete); // Prevent duplicate handlers

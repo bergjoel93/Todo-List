@@ -8,14 +8,19 @@ function createProjectPage(project = null) {
     projectForm.classList.add('project-form-container');
     projectForm.innerHTML = `
         <div class="project-info-container">
+            <div class="project-title-container">
                 <input type="text" id="projectTitle" value="${project.title}">
-                <textarea name="projectDescription" id="projectDescription" cols="30" rows="3" placeholder="Description...">${project.description}</textarea> 
+                <button id = "delete-project-button" data-id ="${project.id}"><span class="material-symbols-outlined">
+                delete
+                </span></button>
             </div>
-            <div class="project-task-list">
-                <h2>Tasks</h2>
-                <div class="main-line"></div>
-                <div class ="task-container"></div>
-                <button class="add-project-task"> <span> + </span>Add Task</button>
+            <textarea name="projectDescription" id="projectDescription" cols="30" rows="3" placeholder="Description...">${project.description}</textarea> 
+        </div>
+        <div class="project-task-list">
+            <h2>Tasks</h2>
+            <div class="main-line"></div>
+            <div class ="task-container"></div>
+            <button class="add-project-task" data-id="${project.id}"> <span> + </span>Add Task</button>
         </div>
     `;
 

@@ -245,13 +245,34 @@ padding: 6px;
     border-style: none;
     font-size: 2rem;
     font-weight: bold;
-    padding: 8px;
+    
     
 }
-.project-info-container input:hover{
-    border-style: solid;
+
+.project-title-container input:focus{
+    outline: none;
+}
+
+.project-title-container{
+    display: flex;
+    padding: 8px;
+}
+
+.project-title-container button {
+    border-style: none;
+    background-color: transparent;
+    color: var(--lightTextColor);
+}
+
+.project-title-container button:hover{
+    color: var(--addButtonText);
+}
+
+.project-title-container:hover{
+    border: solid var(--lightTextColor) 1px;
     border-radius: 8px;
 }
+
 
 .project-info-container textarea {
     width: 100%;
@@ -281,11 +302,26 @@ padding: 6px;
     border-bottom: solid var(--addButtonText) 1px;
 }
 
-
-
-
-
-
-
-
-
+/* Delete dialog box */
+#deleteConfirm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: var(--sidebarColorLight);
+    border: none;
+    box-shadow: 10px 4px 17px -1px rgba(0,0,0,0.56);
+    -webkit-box-shadow: 10px 4px 17px -1px rgba(0,0,0,0.56);
+    -moz-box-shadow: 10px 4px 17px -1px rgba(0,0,0,0.56);
+}
+#deleteConfirm .deleteMessage{
+    padding: 6px;
+    color: var(--addButtonText);
+}
+#deleteConfirm .deleteConfirmButtons button{
+    padding: 4px;
+    font-size: .7rem;
+    width: 32px;
+}

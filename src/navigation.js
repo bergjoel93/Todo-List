@@ -36,7 +36,7 @@ function handleNavigation(navItem) {
     // Determine which navigation item was clicked
     switch (navItem) {
         case 'todayBtn':
-            renderTasks('today');
+            renderTasks('today', null);
             removeActive();
             addActive(".todayBtn");
             break;

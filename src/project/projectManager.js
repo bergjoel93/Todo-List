@@ -97,14 +97,17 @@ class ProjectManager {
         const projectData = localStorage.getItem('projects');
         if(projectData) {
             const projects = JSON.parse(projectData);
-            return projects.map(projectData => 
-                new Project(
+            return projects.map(projectData => {
+                const project = new Project(
                     projectData.id, 
                     projectData.title, 
                     projectData.description, 
-                    new Date(projectData.dueDate), 
-                    projectData.complete, 
-                    projectData.projectss));
+                    new Date(projectData.dueDate)
+                );
+                project.tasks = projectData.tasks || [];
+                project.nextTaskId = project.tasks.length ? Math.max(...project.tasks.map(t => t.id)) + 1 : 0;
+                return project;
+            });
         }
         return [];
     }
@@ -136,17 +139,40 @@ class ProjectManager {
             console.error('Project not found with ID:', projectId);
         }
     } 
-    
+
     /**
      * Add's new task to the project. 
-     * @param {*} projectId 
-     * @param {*} task 
+     * @param {int} projectId 
+     * @param {Task} task 
      */
     addTaskToProject(projectId, task) {
         const project = this.projects.find(p => p.id === projectId);
         if (project) {
+            task.id = project.nextTaskId++;  // Assign an ID to the task and increment the nextTaskId
             project.tasks.push(task);  // Add the new task to the project's task array
             this.saveProjects();  // Save the updated projects array
+        } else {
+            console.error("Project not found with ID:", projectId);
+        }
+    }
+    
+    /**
+     * 
+     * @param {int} projectId 
+     * @param {int} taskId 
+     * @param {Task} updatedTask 
+     */
+    updateTaskInProject(projectId, taskId, updatedTask) {
+        const project = this.projects.find(p => p.id === projectId);
+        if (project) {
+            const taskIndex = project.tasks.findIndex(t => t.id === taskId);
+            if (taskIndex !== -1) {
+                // Update task properties
+                project.tasks[taskIndex] = {...project.tasks[taskIndex], ...updatedTask};
+                this.saveProjects();  // Save the updated projects array
+            } else {
+                console.error("Task not found with ID:", taskId);
+            }
         } else {
             console.error("Project not found with ID:", projectId);
         }
